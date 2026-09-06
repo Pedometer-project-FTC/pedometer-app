@@ -9,7 +9,10 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "UIBackgroundModes": ["processing", "location"]
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -20,7 +23,11 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.anonymous.pedometerapp"
+      "package": "com.anonymous.pedometerapp",
+      "permissions": [
+        "android.permission.health.READ_STEPS",
+        "android.permission.health.READ_HEALTH_DATA_IN_BACKGROUND"
+      ]
     },
     "web": {
       "output": "static",
@@ -43,12 +50,31 @@
       "react-native-health-connect",
       [
         "expo-build-properties",
-    {
-      "android":{
-        "minSdkVersion" : 26
-      }  
-    }
-  ]
+        {
+          "android": {
+            "minSdkVersion": 26
+          }
+        }
+      ],
+      "expo-background-task",
+      "expo-sqlite",
+      "expo-secure-store",
+      [
+        "expo-sensors",
+        {
+          "motionPermission": "歩数の計測のために、モーションとフィットネスのデータを使用します。"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "歩いた経路を地図に表示するために位置情報を使用します。",
+          "locationWhenInUsePermission": "歩いた経路を地図に表示するために位置情報を使用します。",
+          "isAndroidBackgroundLocationEnabled": true,
+          "isAndroidForegroundServiceEnabled": true
+        }
+      ],
+      "expo-notifications"
     ],
     "experiments": {
       "typedRoutes": true,
