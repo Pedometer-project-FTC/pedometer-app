@@ -18,11 +18,11 @@ import { requestNotificationPermissionAsync } from '@/sync/notifications';
 import { usePedometerSystem } from '@/hooks/use-pedometer-system';
 
 /**
- * 開発用ダッシュボード。
+ * 開発用ダッシュボード (/debug)。
  *
  * バックグラウンド周りは画面が無いと動作確認しづらいので、実機で状態を
  * 一覧できる画面を用意した。本番の UI とは無関係なので、リリース前に
- * このタブごと消してよい。
+ * このファイルごと消してよい (アカウントタブのリンクも一緒に消すこと)。
  */
 
 export default function DevConsoleScreen() {
@@ -222,7 +222,7 @@ function formatTime(iso: string | null): string {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: '#f6f7f4' },
   content: { padding: 16, paddingBottom: 48, gap: 14 },
-  h1: { fontSize: 22, fontWeight: '700', marginTop: 40 },
+  h1: { fontSize: 22, fontWeight: '700' },
   h2: { fontSize: 15, fontWeight: '700', marginBottom: 6, color: '#4a7c2f' },
   section: { backgroundColor: '#fff', borderRadius: 12, padding: 14, gap: 4 },
   row: { flexDirection: 'row', justifyContent: 'space-between', gap: 12, paddingVertical: 3 },

@@ -127,7 +127,21 @@ hooks/use-pedometer-system.ts   ★画面が使うフック
 
 ## 4. 画面との紐づけかた
 
-`app/(tabs)/index.tsx` で以下のように書けば、Figma の各パーツが埋まる。
+**実装済み。** Figma (Anima が書き出した Web 版のコード) を React Native へ翻訳して、
+下記の画面に実データを流し込んである。
+
+```
+app/(tabs)/index.tsx          記録 (Figma の Android Medium - 1)
+app/(tabs)/map.tsx            マップ (地図は未実装、枠のみ)
+app/(tabs)/achievements.tsx   アチーブ (駅の到達チェックリスト)
+app/(tabs)/account.tsx        アカウント
+app/login.tsx                 ログイン / 新規登録
+app/debug.tsx                 開発用ダッシュボード
+components/home/              記録画面のパーツ
+constants/design.ts           Figma の色・角丸の定義
+```
+
+呼び出しかたは以下のとおり。
 
 ```tsx
 import { usePedometerSystem } from '@/hooks/use-pedometer-system';
@@ -308,5 +322,13 @@ iOS:
 - **プロフィール入力画面**: `db/profile-repository.ts` の読み書きはできているが、
   身長・体重を入力する UI はまだ無い（既定値 165cm / 58kg で計算している）。
 - **サーバ**: 上記の API 仕様に沿って実装が必要。
-- **開発用ダッシュボード**: `app/(tabs)/explore.tsx` は動作確認用なので、
-  本番 UI ができたらタブごと消してよい。
+- **開発用ダッシュボード**: `app/debug.tsx` は動作確認用なので、
+  リリース前に消してよい (アカウントタブのリンクも一緒に消すこと)。
+- **キャラクター画像**: Figma にある恐竜のイラストが未入手。
+  素材が届いたら `assets/images/` に置き、`app/(tabs)/index.tsx` の
+  `<StepCountCard steps={...} />` に `character={<Image .../>}` を渡す。
+- **地図**: `react-native-maps` と Google Maps の API キーが必要。
+  描画に使うデータ (`toRoutePolyline` / `currentLatLng` / `getRouteForDay`) は揃っている。
+- **web プレビュー**: `metro.config.js` で `.wasm` をアセット扱いにしてあるので、
+  `npx expo start` して `http://localhost:8081` を開けばブラウザで画面を確認できる。
+  歩数は取れないが、レイアウトの確認には使える。
