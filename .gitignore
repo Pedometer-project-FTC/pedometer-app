@@ -41,3 +41,9 @@ app-example
 # generated native folders
 /ios
 /android
+
+# 路線ロジック検証スクリプトの出力
+.railway-check/
+
+# 環境変数 (.env.example をコピーして作る)
+.env

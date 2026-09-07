@@ -12,3 +12,6 @@ AndroidSdk26以上でないと動きません。expo-build-propertyからそう�
 
 忘れそうなコマンドたち：
 npx expo run:android
+git add .
+git commit -M main
+git status 
